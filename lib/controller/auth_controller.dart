@@ -13,6 +13,7 @@ class AuthController extends GetxController {
           img != null) {
         UserCredential credential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
+        uploadImage(img);
       }
     } catch (e) {
       print(e);
@@ -28,8 +29,10 @@ class AuthController extends GetxController {
     ref.child('profilePics').child(FirebaseAuth.instance.currentUser!.uid);
 
     UploadTask uploadTask = ref.putFile(image); // uploading file
-    TaskSnapshot snapshot = await uploadTask; // wait until upload completed and return a snapshot
-    String imageDownURL = await snapshot.ref.getDownloadURL(); // download link can be saved in storage
+    TaskSnapshot snapshot =
+        await uploadTask; // wait until upload completed and return a snapshot
+    String imageDownURL = await snapshot.ref
+        .getDownloadURL(); // download link can be saved in storage
 
     return imageDownURL;
   }
