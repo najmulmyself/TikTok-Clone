@@ -10,7 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: backgroundColor),
+      debugShowCheckedModeBanner: false,
+      theme:
+          ThemeData.dark().copyWith(scaffoldBackgroundColor: backgroundColor),
       title: 'Material App',
       home: LoginScreen(),
     );
