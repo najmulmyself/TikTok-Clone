@@ -50,11 +50,24 @@ class AuthController extends GetxController {
   }
 
   Future<String> uploadImage(File image) async {
-    Reference ref = FirebaseStorage.instance.ref();
+    // Reference ref = FirebaseStorage.instance.ref();
 
     //first chlid will be folder name
     // second chlid will be file name- here is uid will be the file name
-    ref.child('profilePics').child(FirebaseAuth.instance.currentUser!.uid);
+    // ref
+    // .child('profilePics/images')
+    // .child(FirebaseAuth.instance.currentUser!.uid);
+    // .child(
+    //     'profilePics/images/${FirebaseAuth.instance.currentUser!.uid}'); //CHATGPT
+///////////////CHATGPT SUGGESTION//////////////////////////
+    // ref = FirebaseStorage.instance
+    //     .ref()
+    //     .child('profilePics/${FirebaseAuth.instance.currentUser!.uid}');
+
+    Reference ref = FirebaseStorage.instance
+        .ref()
+        .child('profilePics')
+        .child(FirebaseAuth.instance.currentUser!.uid);
 
     UploadTask uploadTask = ref.putFile(image); // uploading file
     TaskSnapshot snapshot =
