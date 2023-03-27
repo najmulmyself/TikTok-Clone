@@ -29,7 +29,7 @@ class SignUpScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  AuthController().pickImage();
+                  AuthController.instance.pickImage();
                 },
                 child: Stack(
                   children: [
@@ -95,11 +95,11 @@ class SignUpScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  AuthController().SignUp(
+                  AuthController.instance.SignUp(
                       usernameController.text,
                       emailController.text,
                       setPasswordcontroller.text,
-                      AuthController().proImg);
+                      AuthController.instance.proImg);
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),

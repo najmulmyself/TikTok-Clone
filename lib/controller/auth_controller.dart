@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_clone/model/user.dart';
 
 class AuthController extends GetxController {
+  static AuthController instance = Get.find();
   File? proImg;
   pickImage() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
