@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok_clone/controller/auth_controller.dart';
 import 'package:tiktok_clone/view/widgets/glitchEffect.dart';
 import 'package:tiktok_clone/view/widgets/myTextfield.dart';
 
@@ -12,7 +13,7 @@ class LoginScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GlithEffect(
-            child: Text(
+            child: const Text(
               "Tiktok",
               style: TextStyle(
                   fontSize: 40,
@@ -20,14 +21,14 @@ class LoginScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           TextInputField(
               controller: emailController,
               myIcon: Icons.email,
               myLabelText: "Email"),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           TextInputField(
@@ -36,14 +37,17 @@ class LoginScreen extends StatelessWidget {
             myLabelText: "Password",
             toHide: true,
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              AuthController.instance
+                  .login(emailController.text, passwordcontroller.text);
+            },
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-              child: Text("Login"),
+              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+              child: const Text("Login"),
             ),
           ),
         ],

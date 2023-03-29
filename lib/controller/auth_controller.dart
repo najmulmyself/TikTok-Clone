@@ -6,6 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_clone/model/user.dart';
+import 'package:tiktok_clone/view/screens/auth/login_screen.dart';
+import 'package:tiktok_clone/view/screens/home_screen.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
@@ -15,6 +17,32 @@ class AuthController extends GetxController {
     final img = File(image!.path);
     proImg = img;
   }
+
+  //user state persistence
+
+  late Rx<User?> user;
+
+  @override
+  void onReady() {
+    super.onReady();
+    user = Rx<User?>(FirebaseAuth.instance.currentUser);
+    user.bindStream(FirebaseAuth.instance.authStateChanges());
+    ever(user, setInitialView);
+  }
+
+  setInitialView(User? user) {
+    if (user == null) {
+      Get.offAll(() => LoginScreen());
+    } else {
+      Get.offAll(() => HomeScreen());
+
+//       Get.offAll is a navigation method provided by the GetX package in Flutter. It is used to remove all previous rouFtes from the navigator stack and navigate to a new screen, so that the user cannot go back to the previous screen by pressing the back button.
+
+// The Get.offAll method takes a widget as its argument, which is the screen to navigate to. For example, Get.offAll(() => HomeScreen()) will navigate to the HomeScreen widget.
+    }
+  }
+  //////////////////MORE DETAIL IN NOTION////////////////
+  //user state persistence
 
   SignUp(String username, String email, String password, File? img) async {
     try {
@@ -46,6 +74,19 @@ class AuthController extends GetxController {
     } catch (e) {
       print(e);
       Get.snackbar("Error Occurred", e.toString());
+    }
+  }
+
+  login(String email, String password) async {
+    try {
+      if (email.isNotEmpty && password.isNotEmpty) {
+        FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+      } else {
+        Get.snackbar("Error Logging in", "Please Enter all the fields");
+      }
+    } catch (e) {
+      Get.snackbar("Error Logging IN", e.toString());
     }
   }
 
