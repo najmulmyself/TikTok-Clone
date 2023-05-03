@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok_clone/controller/auth_controller.dart';
 import 'package:tiktok_clone/view/widgets/glitchEffect.dart';
 import 'package:tiktok_clone/view/widgets/myTextfield.dart';
 
@@ -40,7 +41,10 @@ class LoginScreen extends StatelessWidget {
             height: 30,
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              AuthController.instance
+                  .login(emailController.text, passwordcontroller.text);
+            },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
               child: const Text("Login"),
