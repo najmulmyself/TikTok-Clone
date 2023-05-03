@@ -11,8 +11,12 @@ class AuthController extends GetxController {
   File? proImg;
   pickImage() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
-    final img = File(image!.path);
+    if (image != null) {
+    final img = File(image.path);
     proImg = img;
+    } else {
+      Get.snackbar("No Image Selected", "Problem with selecting images");
+    }
   }
 
   SignUp(String username, String email, String password, File? img) async {

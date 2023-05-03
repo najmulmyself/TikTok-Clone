@@ -102,8 +102,8 @@ class SignUpScreen extends StatelessWidget {
                       AuthController().proImg);
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                  child: Text("SignUp"),
+                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  child: const Text("SignUp"),
                 ),
               ),
             ],
