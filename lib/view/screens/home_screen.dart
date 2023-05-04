@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
               label: "Profile"),
         ],
       ),
-      body: Center(child: Text(pageIndex[pageIdx])),
+      body: Center(child: pageIndex[pageIdx]),
     );
   }
 }
