@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_clone/model/user.dart';
 import 'package:tiktok_clone/view/screens/auth/login_screen.dart';
+import 'package:tiktok_clone/view/screens/auth/signup_screen.dart';
 import 'package:tiktok_clone/view/screens/home_screen.dart';
 
 class AuthController extends GetxController {
@@ -15,8 +16,8 @@ class AuthController extends GetxController {
   pickImage() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image != null) {
-    final img = File(image.path);
-    proImg = img;
+      final img = File(image.path);
+      proImg = img;
     } else {
       Get.snackbar("No Image Selected", "Problem with selecting images");
     }
