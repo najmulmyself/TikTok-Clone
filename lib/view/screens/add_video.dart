@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tiktok_clone/view/screens/add_caption_screen.dart';
 
 import '../../constant.dart';
 
@@ -12,6 +15,7 @@ class AddVideoScreen extends StatelessWidget {
     final video = await ImagePicker().pickVideo(source: source);
     if (video != null) {
       Get.snackbar("Video Selected", video.path);
+     Navigator.push(context, MaterialPageRoute(builder: (context)=> AddCaptionScreen(videoFile: File(video.path), videoPath: video.path)));
     } else {
       Get.snackbar(
           "Error In Selecting Video", "Please Choose A Different Video File");
